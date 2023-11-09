@@ -118,6 +118,8 @@ NavMeshSettings:
     manualTileSize: 0
     tileSize: 256
     accuratePlacement: 0
+    maxJobWorkers: 0
+    preserveTilesOutsideBounds: 0
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
@@ -200,7 +202,66 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1746352682
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1746352683}
+  - component: {fileID: 1746352684}
+  m_Layer: 0
+  m_Name: String
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1746352683
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1746352682}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1.5, y: 4, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 1
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1746352684
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1746352682}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d30447960e1cf84aad0cfa4b43ef4fe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startString:
+  - color: {r: 0.09000002, g: 0.09000002, b: 0.9, a: 1}
+    shape: {fileID: 7482667652216324306, guid: 39145ef380a377344a09f9edf1ca45d5, type: 3}
+  - color: {r: 0.09000002, g: 0.09000002, b: 0.9, a: 1}
+    shape: {fileID: 7482667652216324306, guid: 39145ef380a377344a09f9edf1ca45d5, type: 3}
+  - color: {r: 0.09000002, g: 0.09000002, b: 0.9, a: 1}
+    shape: {fileID: 7482667652216324306, guid: 39145ef380a377344a09f9edf1ca45d5, type: 3}
+  - color: {r: 0.9019608, g: 0.09019604, b: 0.09019604, a: 1}
+    shape: {fileID: 7482667652216324306, guid: 39145ef380a377344a09f9edf1ca45d5, type: 3}
+  - color: {r: 0.9019608, g: 0.09019604, b: 0.09019604, a: 1}
+    shape: {fileID: 7482667652216324306, guid: 39145ef380a377344a09f9edf1ca45d5, type: 3}
+  - color: {r: 0.9019608, g: 0.09019604, b: 0.09019604, a: 1}
+    shape: {fileID: 7482667652216324306, guid: 39145ef380a377344a09f9edf1ca45d5, type: 3}
+  prefab: {fileID: -3296261312178155634, guid: b82d976caa990b94db889be04fa41c18, type: 3}
