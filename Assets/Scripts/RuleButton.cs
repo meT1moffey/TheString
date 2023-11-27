@@ -1,12 +1,25 @@
 using System.Linq;
 using UnityEngine;
 
-public class Rule : MonoBehaviour
+[System.Serializable]
+public struct Rule
 {
-    [SerializeField] Char[] generative, generated;
-    [SerializeField] String str;
+    public Char[] generative, generated;
+}
 
-    void Awake()
+public class RuleButton : MonoBehaviour
+{
+    public Char[] generative, generated;
+    String str;
+
+    public void Init(Rule rule, String str_)
+    {
+        generative = rule.generative;
+        generated = rule.generated;
+        str = str_;
+    }
+
+    void Start()
     {
         Vector2 size = GetComponent<RectTransform>().rect.size;
         GameObject ruleStr = new();

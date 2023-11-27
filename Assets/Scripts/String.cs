@@ -29,7 +29,7 @@ public class String : MonoBehaviour
         if (begin + comparing.Length > list.Count)
             return false;
 
-        for(int i = 0; i < comparing.Length; i++)
+        for (int i = 0; i < comparing.Length; i++)
             if (list[i + begin].GetData() != comparing[i])
                 return false;
 
