@@ -31,6 +31,7 @@ public class CharEntity : MonoBehaviour
 {
     static int rowLenght = 5;
     static float charsDistance = 120, rowsDistance = -120;
+    static CharEntity prefab = null;
 
     public int index;
 
@@ -48,17 +49,9 @@ public class CharEntity : MonoBehaviour
         Image icon = GetComponent<Image>();
         return new(icon.color, icon.sprite);
     }
-    static public CharEntity Embody(Char data, Transform transform)
+
+    public void Select()
     {
-        GameObject sym = new();
-        sym.transform.parent = transform;
-        sym.transform.localScale = Vector3.one;
-        sym.SetActive(true);
-
-        Image icon = sym.AddComponent<Image>();
-        icon.color = data.color;
-        icon.sprite = data.shape;
-
-        return sym.AddComponent<CharEntity>();
+        MainString.inst.ApplyRule(index);
     }
 }

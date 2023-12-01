@@ -4,19 +4,23 @@ using UnityEngine;
 [System.Serializable]
 public struct Rule
 {
+    public Rule(Char[] generative_, Char[] generated_)
+    {
+        generative = generative_;
+        generated = generated_;
+    }
+
     public Char[] generative, generated;
 }
 
 public class RuleButton : MonoBehaviour
 {
     public Char[] generative, generated;
-    String str;
 
-    public void Init(Rule rule, String str_)
+    public void Init(Rule rule)
     {
         generative = rule.generative;
         generated = rule.generated;
-        str = str_;
     }
 
     void Start()
@@ -26,21 +30,11 @@ public class RuleButton : MonoBehaviour
 
         ruleStr.transform.parent = transform;
         ruleStr.transform.localScale = Vector3.one * 0.5f;
-        ruleStr.transform.localPosition = Vector2.left * size / 2;
+        ruleStr.transform.localPosition = Vector2.left * size * 0.4f;
         ruleStr.AddComponent<String>().startString = generative.Concat(new[] { new Char(new(0, 0, 0, 0), null) }).Concat(generated).ToArray();
     }
 
-    public bool Use(int begin)
-    {
-        if (!str.IsSubstringEquals(begin, generative))
-            return false;
+    Rule GetData() => new(generative, generated);
 
-        str.ReplaceSubstring(begin, generative.Length, generated);
-        return true;
-    }
-
-    public void UseOnFirst()
-    {
-        for(int i = 0; i < str.list.Count && !Use(i); i++);
-    }
+    public void Select() => MainString.inst.curRule = GetData();
 }

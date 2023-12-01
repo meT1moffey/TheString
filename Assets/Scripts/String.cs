@@ -1,21 +1,25 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class String : MonoBehaviour
 {
     public Char[] startString;
-
+    
     public List<CharEntity> list { get; private set; } = new();
 
     void Start()
     {
-        foreach(Char data in startString)
-            list.Add(CharEntity.Embody(data, transform));
+        foreach (Char data in startString)
+        {
+            list.Add(Embody(data, transform));
+            list.Last().GetComponent<Button>().enabled = this is MainString;
+        }
         UpdateIndexes();
     }
 
-    void UpdateIndexes()
+    protected void UpdateIndexes()
     {
         for (int i = 0; i < list.Count; i++)
         {
@@ -24,26 +28,18 @@ public class String : MonoBehaviour
         }
     }
 
-    public bool IsSubstringEquals(int begin, Char[] comparing)
+    public CharEntity Embody(Char data, Transform transform)
     {
-        if (begin + comparing.Length > list.Count)
-            return false;
+        CharEntity sym = Instantiate(MainString.inst.charEntity, transform);
+        sym.transform.parent = transform;
+        sym.transform.localScale = Vector3.one;
 
-        for (int i = 0; i < comparing.Length; i++)
-            if (list[i + begin].GetData() != comparing[i])
-                return false;
+        Image icon = sym.GetComponent<Image>();
+        icon.color = data.color;
+        icon.sprite = data.shape;
 
-        return true;
-    }
+        sym.GetComponent<Button>().enabled = this is MainString;
 
-    public void ReplaceSubstring(int begin, int count, Char[] replacing)
-    {
-        for (int i = begin; i < begin + count; i++)
-            Destroy(list[i].gameObject);
-        list.RemoveRange(begin, count);
-
-        CharEntity[] replacingEntities = replacing.Select(c => CharEntity.Embody(c, transform)).ToArray();
-        list.InsertRange(begin, replacingEntities);
-        UpdateIndexes();
+        return sym;
     }
 }

@@ -4,7 +4,6 @@ using UnityEngine;
 public class RuleGenerator : MonoBehaviour
 {
     [SerializeField] Rule[] rules;
-    [SerializeField] String str;
     [SerializeField] Vector2 firstPos, dist;
     [SerializeField] RuleButton prefab;
 
@@ -15,7 +14,7 @@ public class RuleGenerator : MonoBehaviour
         {
             RuleButton rule = Instantiate(prefab, transform);
             rule.transform.localPosition = firstPos + dist * i;
-            rule.Init(rules[i], str);
+            rule.Init(rules[i]);
         }
     }
 }
