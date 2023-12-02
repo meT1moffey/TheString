@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine.UI;
 
@@ -7,6 +8,8 @@ public class MainString : String
     public CharEntity charEntity;
 
     public Rule? curRule;
+
+    List<(Rule, int)> history = new();
 
     void Awake()
     {
@@ -45,6 +48,17 @@ public class MainString : String
             return;
 
         ReplaceSubstring(begin, curRule.Value.generative.Length, curRule.Value.generated);
+        history.Add((curRule.Value, begin));
         curRule = null;
+    }
+
+    public void Undo()
+    {
+        if (history.Count == 0)
+            return;
+
+        var undoing = history.Last();
+        ReplaceSubstring(undoing.Item2, undoing.Item1.generated.Length, undoing.Item1.generative);
+        history.RemoveAt(history.Count - 1);
     }
 }
