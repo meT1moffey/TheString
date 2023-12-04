@@ -31,7 +31,6 @@ public class CharEntity : MonoBehaviour
 {
     static int rowLenght = 5;
     static float charsDistance = 120, rowsDistance = -120;
-    static CharEntity prefab = null;
 
     public int index;
 

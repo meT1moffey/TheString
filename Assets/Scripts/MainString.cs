@@ -1,20 +1,25 @@
 using System.Collections.Generic;
 using System.Linq;
-using UnityEngine.UI;
+using UnityEngine;
 
 public class MainString : String
 {
     static public MainString inst;
     public CharEntity charEntity;
 
-    public Rule? curRule;
+    [SerializeField] Char[] correct;
+    [SerializeField] String correctEntity;
+    [SerializeField] GameObject winMenu;
 
+    public Rule? curRule;
     List<(Rule, int)> history = new();
 
     void Awake()
     {
         if(inst == null)
             inst = this;
+
+        correctEntity.startString = correct;
     }
 
     bool IsSubstringEquals(int begin, Char[] comparing)
@@ -49,7 +54,9 @@ public class MainString : String
 
         ReplaceSubstring(begin, curRule.Value.generative.Length, curRule.Value.generated);
         history.Add((curRule.Value, begin));
-        curRule = null;
+
+        if (list.Count == correct.Length && IsSubstringEquals(0, correct))
+            MenuManager.inst.SetMenu(winMenu);
     }
 
     public void Undo()
@@ -60,5 +67,11 @@ public class MainString : String
         var undoing = history.Last();
         ReplaceSubstring(undoing.Item2, undoing.Item1.generated.Length, undoing.Item1.generative);
         history.RemoveAt(history.Count - 1);
+    }
+
+    public void ResetString()
+    {
+        ReplaceSubstring(0, list.Count, startString);
+        history.Clear();
     }
 }

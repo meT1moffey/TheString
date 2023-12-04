@@ -7,7 +7,7 @@ public class String : MonoBehaviour
 {
     public Char[] startString;
     
-    public List<CharEntity> list { get; private set; } = new();
+    public List<CharEntity> list { get; protected set; } = new();
 
     void Start()
     {
