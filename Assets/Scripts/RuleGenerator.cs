@@ -3,9 +3,16 @@ using UnityEngine;
 
 public class RuleGenerator : MonoBehaviour
 {
-    [SerializeField] Rule[] rules;
+    static public RuleGenerator inst;
+    public Rule[] rules;
     [SerializeField] Vector2 firstPos, dist;
     [SerializeField] RuleButton prefab;
+
+    void Awake()
+    {
+        if(inst == null)
+            inst = this;
+    }
 
     void Start()
     {

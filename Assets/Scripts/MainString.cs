@@ -7,7 +7,7 @@ public class MainString : String
     static public MainString inst;
     public CharEntity charEntity;
 
-    [SerializeField] Char[] correct;
+    public Char[] correct;
     [SerializeField] String correctEntity;
     [SerializeField] GameObject winMenu;
 

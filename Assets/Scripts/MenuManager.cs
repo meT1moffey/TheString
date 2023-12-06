@@ -3,18 +3,32 @@ using UnityEngine;
 
 public class MenuManager : MonoBehaviour
 {
-    [SerializeField] GameObject curMenu;
+    [SerializeField] GameObject startMenu;
+    [SerializeField] GameObject[] preloaded;
+    GameObject prevMenu, curMenu;
     static public MenuManager inst;
 
-    void Start()
+    void OnEnable()
     {
         if(inst == null)
             inst = this;
+
+        curMenu = startMenu;
+        foreach(GameObject menu in preloaded)
+            SetMenu(menu);
+    }
+
+    void Start()
+    {
+        SetMenu(startMenu);
     }
 
     public void SetMenu(GameObject newMenu)
     {
-        curMenu.SetActive(false);
+        (prevMenu = curMenu).SetActive(false);
         (curMenu = newMenu).SetActive(true);
     }
+
+    public void Back()
+        => SetMenu(prevMenu);
 }
